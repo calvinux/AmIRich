@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>AmIRich?</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">   
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>    
+    <script>if (window.module) module = window.module;</script>
+    <style>
+      body { background-color: #ecf0f1; padding-bottom: 61px; }
+      .container-fluid { padding: 0 30px; }
+      h1 { background: #2c3e50; margin: 0 0 0px 0; padding: 15px; color: #fff; -webkit-app-region: drag; font-size: 28px; }
+      h2 { font-size: 22px; padding-bottom: 10px; margin-bottom: 15px; border-bottom: 1px solid #dddddd }
+      h4 { font-size: 13px; margin-top: 10px; }
+      h4:first-of-type { font-size: 13px; margin-top: 0px; }
+      .summary { background: #617487; color: #fff; margin-bottom: 30px; padding: 10px 15px; font-size: 13px; font-weight: bold;}
+      .summary > * { display: inline-block }
+      .balances { padding-bottom: 15px; border-bottom: 1px solid #ddd; margin-bottom: 15px; font-size: 13px; }
+      .totals { font-size: 13px; font-weight: bold; }
+      #settings { position: fixed; bottom: 0; padding: 15px; width: 100%; font-size: 11px; background: #fff;}
+      #settings a { color: black; }
+      div > .form-group { margin-bottom: 5px; }
+      div > .form-group:last-of-type { margin-bottom: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>
+      <div class="pull-right"><i class="fa fa-refresh" id="icon-refresh"></i></div>
+      Wallets
+    </h1>
+    <div class="summary">
+      TOTALS: 
+        <div id="fiat_value"></div>,  
+        <div id="btc_value"></div>,  
+        <div id="eth_value"></div> 
+      </div>
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col">
+              <h2>Ethereum</h2>
+              <div id="ethereum">
+                  <div class="balances"></div>
+                  <div class="totals">
+                      <div class="btc"></div>
+                      <div class="eth"></div>
+                      <div class="eur"></div>
+                    </div>
+              </div>
+          </div>
+          <div class="col">
+              <h2>Kraken</h2>
+              <div id="kraken">
+                  <div class="balances"></div>
+                  <div class="totals">
+                      <div class="btc"></div>
+                      <div class="eth"></div>
+                      <div class="eur"></div>
+                    </div>
+              </div>
+          </div>
+          <div class="col">
+              <h2>Bittrex</h2>
+              <div id="bittrex">
+                <div class="balances"></div>
+                <div class="totals">
+                    <div class="btc"></div>
+                    <div class="eth"></div>
+                    <div class="eur"></div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div id="settings" class="text-right">
+      <div id="updated" class="pull-left"></div><a href="#"><i class="fa fa-gears" data-toggle="modal" data-target="#exampleModal"></i></a>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <div>
+                <h4>Wallet</h4>
+                <div class="form-group input-sm">
+                  <input type="text" id="ethereum-address" placeholder="0x" class="form-control form-control-sm" />
+                </div>
+              </div>
+              <div>
+                <h4>Kraken</h4>
+                <div class="form-group">
+                  <input type="text" id="kraken-api-key" placeholder="API Key" class="form-control form-control-sm" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="kraken-secret-key" placeholder="Secret Key" class="form-control form-control-sm" />
+                </div>
+              </div>
+              <div>
+                <h4>Bittrex</h4>
+                <div class="form-group">
+                  <input type="text" id="bittrex-api-key" placeholder="API Key" class="form-control form-control-sm" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="bittrex-secret-key" placeholder="Secret Key" class="form-control form-control-sm" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary btn-sm" id="save-settings">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script>
+      require('./renderer.js')
+    </script>
+  </body>
+</html>

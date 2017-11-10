@@ -1,0 +1,32 @@
+{
+  "name": "AmIRich",
+  "version": "1.0.0",
+  "description": "Get Your Wallets's Balances",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "Bittrex",
+    "Kraken",
+    "Ethereum",
+    "Bitcoin"
+  ],
+  "author": "Digital Kids",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.7.9",
+    "electron-rebuild": "^1.6.0"
+  },
+  "dependencies": {
+    "@warren-bank/node-kraken-api": "^3.0.0",
+    "axios": "^0.17.0",
+    "moment": "^2.19.1",
+    "node-coinmarketcap": "^0.2.0",
+    "node.bittrex.api": "^1.0.0",
+    "regenerator-runtime": "^0.11.0",
+    "web3": "^1.0.0-beta.24"
+  }
+}
